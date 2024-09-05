@@ -1,0 +1,23 @@
+- name: install prometheus 
+  apt:
+    name: prometheus
+    state: present
+    update_cache: yes
+- name: config prometheus
+  template: 
+    src: prometheus.yml.j2
+    data: /etc/prometheus/prometheus.yml
+    mode: 0644
+  notify:
+    - Restart Prometheus
+- name: start + enable prometheus
+  systemd:
+    name: prometheus
+    enabled: yes
+    state: started
+
+handlers:
+  - name: Restart Prometheus
+    systemd:
+      name: prometheus
+      state: restarted
