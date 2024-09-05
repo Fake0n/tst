@@ -1,0 +1,6 @@
+- name: deploy exporter and promtail on srv2 and srv3
+  hosts: exporter_promt
+  become: yes
+  roles:
+    - node_exporter
+    - promtail

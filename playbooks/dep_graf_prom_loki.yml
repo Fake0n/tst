@@ -1,0 +1,7 @@
+- name: deploy graf, prom, loki on stv1
+  hosts: grafana_prom_loki
+  become: yes
+  roles:
+    - prometheus
+    - grafana
+    - loki
